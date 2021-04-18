@@ -1,0 +1,262 @@
+\documentclass[final,t, 6pt]{beamer}
+\usepackage{etex}
+
+
+
+% special user theme for eth package
+\usepackage[orientation=portrait,size=a0,scale=1.4,debug]{beamerposter}
+\usetheme{zurichposterwhite}
+
+
+%%%
+%%% PACKAGES
+%%%
+%\usepackage[bibstyle=authoryear, citestyle=authoryear-comp,%
+%hyperref=auto]{biblatex}
+%\bibliography{bib}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{ifpdf}			% pdf package
+\usepackage[pdf]{pstricks}
+\usepackage{wrapfig}
+%\usepackage{array}
+%\usepackage{caption,subcaption}
+%\usepackage[export]{adjustbox}% http://ctan.org/pkg/adjustbox
+\usepackage{sidecap}
+
+\renewcommand{\figurename}{\small \good{Figure}}
+\usepackage{caption} 
+
+\usepackage{subfigure,tikz}
+%\usetikzlibrary{shapes,arrows}
+\usepackage{multirow}
+\usepackage{transparent}
+\usepackage{verbatim}
+\usepackage{xcolor}
+%\usepackage[active,tightpage]{preview}
+%\PreviewEnvironment{tikzpicture}
+%\setlength\PreviewBorder{5pt}%
+\usepackage{mathtools}
+\usepackage{wasysym}
+\usepackage{latexsym}
+\usepackage{pifont}
+
+
+\newcommand{\xDownarrow}[1]{%
+  {\left\Downarrow\vbox to #1{}\right.\kern-\nulldelimiterspace}
+}
+
+%%%
+%%% DEFINITIONS
+%%%
+\addtobeamertemplate{block begin}{\pgfsetfillopacity{0.5}}{\pgfsetfillopacity{0.5}}
+
+
+
+%%%
+%%% MAKETITLE
+%%%
+% document properties
+\title{Numerical  Simulations  of  Hydraulic  Fracturing  during \\[1ex]  Reservoir  
+Stimulation at the Grimsel Test Site, Switzerland}
+
+\author[shortname]{D. Vogler \inst{1}, R.R. Settgast \inst{2}, C.S. Sherman  \inst{2}, V.S. Gischig \inst{1}, R. Jalali \inst{1}, J.A. Doetsch \inst{1}, B. Valley \inst{3}, K.F. Evans \inst{1}, F. Amann \inst{1}, M.O. Saar \inst{1} }
+
+\institute[shortinst]{\inst{1} ETH Zurich, Zurich, Switzerland \\[4pt]
+\inst{2} Lawrence Livermore National Laboratory, Livermore, USA\\[4pt]
+\inst{3} University of Neuchatel, Neuchatel, Switzerland
+}
+
+\contact{Daniel Vogler (davogler@ethz.ch)}
+\abstractID{Schatzalp Workshop on Induced Seismicity 2017, Davos, Switzerland}
+
+
+
+%------------------------------------------------------------------------------
+\begin{document}
+
+% custom commands
+\newcommand{\fig}{./figures/}
+
+\newcommand{\good}[1]{{\color{blue}#1}}
+\newcommand{\kopf}[1]{{\color{red}\bf #1}}
+
+
+
+% set pdf for background of poster
+%\usebackgroundtemplate{%
+%  \includegraphics[width=\paperwidth,height=\paperheight]{\hmHetFracFig reservoir/ethz_llnl_reservoir_a6_aperture_t1990} 
+%  }
+
+%\usebackgroundtemplate{%
+%  \tikz\node[opacity=0.3] {\includegraphics[height=\paperheight,width=\paperwidth]{\hmHetFracFig reservoir/ethz_llnl_reservoir_a6_aperture_t1990} };
+%  }
+
+
+% initialize document - frame = whole poster
+\begin{frame}{}
+\vspace{-1.5cm}
+
+\begin{columns}[t]
+
+
+%-----------------------------------------------------------------------------
+%                                                                     COLUMN 1
+% ----------------------------------------------------------------------------
+\begin{column}{.48\linewidth}
+
+
+
+  %%%%%%%%%%%%%%%%%%%
+  %%% INTRODUCTION
+  %%%%%%%%%%%%%%%%%%%
+  \begin{alertblock}{Introduction}
+    Switzerland plans large-scale exploitation of \alert{deep geothermal energy} for electricity generation. 
+    \alert{Underground lab experiments} are performed to advance quantitative \alert{model stimulation and reservoir operation} capabilities. 
+    This work studies numerical models of hydraulic fracturing experiments performed at the Grimsel Test Site, Switzerland. 
+    Presented results focus on the pressure response during injection, fracture dimensions, and microseismic events around the propagating fracture [1].
+  \end{alertblock}
+
+
+  %%%%%%%%%%%%%%%%%%%
+  %%% EXPERIMENT
+  %%%%%%%%%%%%%%%%%%%
+  \begin{block}{Field experiments}
+    The Grimsel Test Site (GTS) has been extensively monitored, and is used for a series of \alert{hydraulic injection experiments} in \alert{crystalline rock} [2]. 
+    The GTS is located in a granitic formation and about 450 meters beneath ground surface. 
+    Three to four packed-off intervals in \alert{three boreholes} were each subjected to fluid injection until breakdown and fracture propagation were observed. 
+    During testing, the experimental rock volume was geophysically monitored. 
+    The present study focuses on the injection cycles of mini-fracs performed at 18 m (SB3-18) and 8 m depth (SB3-8) along sub-horizontal borehole SB3.\\[15pt]
+    \begin{minipage}{0.99\textwidth}
+      \begin{minipage}{0.6\textwidth}
+	\begin{center}
+	  \includegraphics[width=0.9\textwidth]{\fig GTSsystem}
+	  %\caption{GTS - a) Tunnel view; b) Main fault zones and principal stress orientations; c) Monitoring of fault zones; d) Borehole locations.}
+	\end{center}
+      \end{minipage}
+      \begin{minipage}{0.35\textwidth}
+	{\small {\good{Figure:}} GTS - a) Borehole locations; b) Monitoring of fault zones; c) Main fault zones and principal stress orientations; d) Tunnel view.}
+      \end{minipage}
+    \end{minipage}\\[15pt]
+  
+    Three \alert{fracture reopening injection cycles} (injection cycles 2-4) were performed after an \alert{initial breakdown cycle} (injection cycle 1). The \alert{total injected fluid volumes} during cycles 1-4 at borehole locations SB3-18 and SB3-8 were 0.5, 1.6, 2.5, 3.3 Litres (7.9 Litres total) and 1.1, 1.8, 3.3, 4.2 Litres (10.4 Litres total), respectively. \\[5pt]
+    \begin{minipage}{0.99\textwidth}
+      \begin{minipage}{0.35\textwidth}
+	{\small {\good{Figure:}} Example of stimulation cycles in SB3 borehole at 8m depth (of borehole). An initial breakdown cycle is followed by three fracture reopening injection cycles.}
+      \end{minipage}
+      \begin{minipage}{0.6\textwidth}
+	\begin{center}
+	  \includegraphics[width=0.9\linewidth]{\fig grimsel_location_marked}
+	\end{center}
+      \end{minipage}
+    \end{minipage}
+    
+  \end{block}
+
+  
+
+
+
+  
+  %%%%%%%%%%%%%%%%%%%
+  %%% SIM LAB TESTS
+  %%%%%%%%%%%%%%%%%%%
+  \begin{block}{Numerical Simulations}
+    Simulations are performed with the \alert{GEOS framework} [3,4], and include propagation of discrete \alert{fractures}, \alert{fluid flow} in the fracture and rock matrix, \alert{wellbore effects} and \alert{microseismic events}. \\
+    
+    \begin{figure}
+      \begin{center}
+	\includegraphics[width=0.8\textwidth]{\fig grimsel_location_marked}
+      \end{center}
+      \caption{SB3-8 before shut-in during injection cycles 1-4 (from left to right). 
+	  Fracture aperture, $\sigma_x$ (parallel to $\sigma_3$), flow rate vectors and wellbore pressure (top). 
+	  Fluid pressure, flow rate vectors and wellbore pressure at fracture-rock mass interface (bottom).}
+    \end{figure} 
+   
+    
+  \end{block}
+
+\end{column}
+
+%-----------------------------------------------------------------------------
+%                                                       COLUMN 2
+% ----------------------------------------------------------------------------
+
+  
+  \begin{column}{.48\linewidth}
+ 
+ 
+     \begin{block}{Microseismic events}
+	\alert{Microseismic events} were simulated with a point approximation [4].
+	\begin{figure}
+	  \begin{center}
+	    \includegraphics[width=0.85\textwidth]{\fig grimsel_location_marked}
+	    \caption{SB3-18. Simulated microseismic activity around the propagating fracture after the four injection cycles concluded (right before start of subsequent injection cycle). 
+	    Shown is the fluid pressure in the system with one octant removed.}
+	  \end{center} 
+	\end{figure}
+	
+	\vspace{10mm}
+	The extent of fractures as indicated by microseismic events is comparable for simulations and experiments. Simulations show more even microseismic event distributions across injection stages. 
+
+	\begin{figure}
+	  \begin{center}
+	    \includegraphics[width=0.95\textwidth]{\fig grimsel_location_marked}
+	    \caption{SB3-18. Microseismic activity in simulations (left) and experiments (right) viewed normal to the fracture (North-South direction).}
+	  \end{center} 
+	\end{figure}
+    \end{block}
+    
+    
+    
+    \begin{block}{Challenges}
+      Among the challenges for the numerical simulations are the incorporation of:
+        \begin{itemize}
+	  \item \alert{Rock foliation}, which might influence strength characteristics.\\[5pt]
+	  \item \alert{Small, pre-existing fractures} (apart from main fault zones).\\[5pt]
+	  \item Effects in and near the wellbore.
+      \end{itemize}
+    \end{block}
+
+   
+    \begin{alertblock}{Conclusions}
+      \begin{itemize}
+	\item \alert{Fracture dimensions} (simulations) agree with \alert{microseismic measurements} (experiments).
+	\item Extent of fractures as indicated by microseismic events is comparable for simulations and experiments. 
+	\item Microseismic events in simulations are \alert{more evenly distributed across injection cycles}. 
+	\item Model allows predictions for \alert{future field experiments}. 
+      \end{itemize}
+    \end{alertblock}
+
+    
+   
+    %\vskip -1cm
+    %%%%%%%%%%%%%%%%%%%
+    %%% REFERENCES
+    %%%%%%%%%%%%%%%%%%%
+    \begin{block}{References}
+      \footnotesize
+      \begin{enumerate}
+      \item Vogler, D., R. R. Settgast, C.S. Sherman, V.S. Gischig, R. Jalali, J.A. Doetsch, B. Valley, K.F. Evans, F. Amann and M.O. Saar (2017), Modeling the Hydraulic Fracture Stimulation performed for Reservoir Permeability Enhancement at the Grimsel Test Site, Switzerland, in Stanford Geothermal Workshop, Stanford University Press, Palo Alto.
+      \item Gischig, V., Doetsch, J., Krietsch, H., Maurer, H., Amann, F., Evans, K., Jalali, M., Obermann, A., Nejati, M., Valley, B., Wiemer, S. and Giardini, D. (2017), On the link between stress field and small-scale hydraulic fracture growth in anisotropic rock derived from micro-seismicity, in preparation.
+      \item Settgast, R. R., Fu, P., Walsh, S. D. C., White, J. A., Annavarapu, C., and Ryerson, F. J. (2016), A fully coupled method for massively parallel simulation of hydraulically driven fractures in 3-dimensions. Int. J. Numer. Anal. Meth. Geomech., doi: 10.1002/nag.2557.
+      \item Sherman, C., Templeton, D., Morris, J. and Matzel, E. (2016), Modeling induced microseismicity in an enhanced geothermal reservoir, in ''50th US Rock Mechanics Symposium'', ARMA, Houston, TX.
+      \end{enumerate}
+      \normalsize
+      \vskip -0.8cm
+    \end{block}
+  
+  
+
+
+  \end{column}
+
+\end{columns}      
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% END OF DOCUMENT
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

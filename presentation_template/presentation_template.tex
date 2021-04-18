@@ -1,0 +1,224 @@
+% PDFLatex
+
+
+%%% presentation template
+%%% daniel vogler, ETHZ
+%%% davogler@ethz.ch
+
+
+\documentclass[first,firstsupp,svgnames,9pt]{ethz_beamer}
+%\PassOptionsToPackage{table,dvipsnames}{xcolor}
+% Options for beamer:
+%
+% 9,10,11,12,13,14,17pt  Fontsizes
+% 
+% compress: navigation bar becomes smaller
+% t       : place contents of frames on top (alternative: b,c)
+% handout : handoutversion
+% notes   : show notes
+% notes=onlyslideswithnotes
+%
+%hyperref={bookmarksopen,bookmarksnumbered} 
+
+
+\usepackage{beamerbasenotes}
+\usepackage{graphicx} 			% graphic package
+\usepackage{tabularx} 			% for tabularx envionment fo rtables
+\usepackage{hyperref}
+\usepackage[square,numbers]{natbib}
+\usepackage[font=scriptsize,labelfont=scriptsize,labelfont=bf]{caption}
+\renewcommand{\figurename}{Fig.}
+
+\date{\today}
+\email{\url{ davogler@ethz.ch}}
+\meeting{Conference XYZ 2017, Zurich}
+%%%
+%%%
+%%%
+%%% BEGIN DOCUMENT
+%%%
+%%%
+%%%
+%%%
+\begin{document}
+\beamertemplatenavigationsymbolsempty
+
+%%%
+%%% DEFINED COMMANDS
+%%%
+\newcommand{\fig}{./figures/}
+\newcommand{\apause}{}%\pause}
+
+%%%
+%%% TITLEPAGE
+%%%
+\title{ {\begin{center} \LARGE Modeling the Hydraulic Fracture Stimulation performed for Reservoir Permeability Enhancement at the Grimsel Test Site, Switzerland \end{center}} }
+\author[Daniel Vogler]{ \Large { \color{tangocolormediumskyblue}{D. Vogler} \inst{1}} R.R. Settgast \inst{2}, C. Sherman \inst{2}, V.S. Gischig \inst{1}, R. Jalali \inst{1}, J. Doetsch \inst{1}, B. Valley \inst{3}, K.F. Evans \inst{1}, F. Amann \inst{1}, M.O. Saar \inst{1} }
+\institute{\small
+  \inst{1} {ETH Swiss Federal Institute of Technology Zurich, Zurich, Switzerland}\\[5pt]
+  \inst{2} {Lawrence Livermore National Laboratory, Livermore, CA, USA}\\[5pt]
+  \inst{3} {University of Neuchatel, Neuchatel, Switzerland}
+}
+
+%%%
+%%% SECTION BEHAVIOR
+%%%
+\setbeamertemplate{section in head/foot}{\hfill\insertsectionheadnumber.~\insertsectionhead}
+\setbeamertemplate{section in head/foot shaded}{\color{structure!50}\hfill\insertsectionheadnumber.~\insertsectionhead}
+\setbeamertemplate{section in toc}{\inserttocsectionnumber.~\inserttocsection}
+% SECTION SLIDE
+\AtBeginSection[] 
+{{\usebackgroundtemplate[plain]{}
+\begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}   } }
+
+
+  
+  
+% TITLEFRAME
+\begin{frame}
+  \Wider[3ex]{
+  \maketitle
+  \begin{center}
+    \insertemail
+  \end{center}
+  }
+\end{frame}
+
+
+
+\section{Introduction}
+
+\begin{frame}{Motivation}
+\Wider[3em]{
+  Switzerland plans large-scale exploitation of \alert{deep geothermal energy} for electricity generation.\\[10pt]
+  Goals are:\\[5pt]
+  \begin{itemize}
+    \item Advance capability to quantitatively \alert{model stimulation and reservoir operation}.\\[5pt]
+    \item Advance process understanding and validation in \alert{underground lab experiments}. \\[5pt]
+    \item Develop \alert{petrothermal P\&D project}.
+  \end{itemize}
+  \vspace{-0.7cm}
+  \begin{figure}
+    \begin{center}
+	\includegraphics[height=0.45\paperheight]{\fig grimsel_location_marked}
+    \end{center}
+    \caption{Grimsel Test Site (GTS) in the Swiss Alps.}
+  \end{figure}
+}
+\end{frame}
+
+
+\section{Experimental Setup}
+
+\begin{frame}{Grimsel Test Site}
+\Wider[3em]{
+  The Grimsel Test Site (GTS) has been extensively monitored, and is used for a series of \alert{hydraulic injection experiments} in \alert{crystalline rock}.
+  \begin{figure}
+    \begin{center}
+	{\scriptsize
+	a)
+	\includegraphics[height=0.32\paperheight]{\fig grimsel_tunnel}
+	\quad
+	b)
+	\includegraphics[height=0.32\paperheight]{\fig grimsel_system_3}\\
+	c)
+	\includegraphics[height=0.32\paperheight]{\fig grimsel_system}
+	\quad
+	d)
+	\includegraphics[height=0.32\paperheight]{\fig grimsel_system_2}
+	}
+	\caption{GTS - a) Tunnel view; b) Main fault zones and principal stress orientations; c) Monitoring of fault zones; d) Borehole locations.}
+    \end{center}
+  \end{figure}
+  }
+\end{frame}
+
+
+
+\begin{frame}{System}
+  \Wider[2em]{
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{itemize}
+	\item Stress magnitudes [MPa] (from overcoring):
+	\begin{itemize}
+	  \item $\sigma_1$ = 17.3; \\[5pt]
+	  \item $\sigma_2$ = 9.7; \\[5pt]
+	  \item $\sigma_3$ = 8.3
+	\end{itemize}
+	\item $\sigma_3$ roughly parallel to borehole SB3.\\[5pt]
+	\item Packer interval at 18~m and 8~m depth are presented.\\[5pt]
+	\item GTS consists of Granite and Granodiorite. \\[5pt]
+	\item Injected fluid volume [L] (Cycle) in SB3:\\[5pt]
+	18: (1) 0.5, (2) 1.6, (3) 2.5, (4) 3.3 L (7.9 litres total) \\[5pt]
+	8: (1) 1.1, (2) 1.8, (3) 3.3, (4) 4.2 L (10.4 litres  total) \\[5pt]
+	\item Bulk rock permeability from previous reports and measurements.
+      \end{itemize}
+
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \begin{figure}
+	\begin{center}
+	  {\scriptsize
+	    a)
+	    \includegraphics[width=0.9\textwidth]{\fig grimsel_system_3}\\
+	    b)
+	    \includegraphics[width=0.9\textwidth]{\fig grimsel_system_2}
+	  }
+	  \caption{GTS System - a) Main fault zones and principal stress orientations; b) Borehole locations.}
+	\end{center}
+      \end{figure}
+    \end{column}
+  \end{columns}
+  }
+\end{frame}
+
+
+
+\begin{frame}{Funding}
+   \includegraphics[width=0.45\textwidth]{./sccer_logo}
+   \hfill
+   \includegraphics[width=0.45\textwidth]{./ethz_logo_black_transparent}
+\end{frame}
+
+
+
+\begin{frame}{References}
+  \begin{enumerate}
+    \item Gischig, V., Doetsch, J., Krietsch, H., Maurer, H., Amann, F., Evans, K., Jalali, M., Obermann, A., Nejati, M., Valley, B., Wiemer, S. and Giardini, D. (2017), On the link between stress field and small-scale hydraulic fracture growth in anisotropic rock derived from micro-seismicity, in preparation. \\[10pt]
+    \item Settgast, R. R., Fu, P., Walsh, S. D. C., White, J. A., Annavarapu, C., and Ryerson, F. J. (2016) A fully coupled method for massively parallel simulation of hydraulically driven fractures in 3-dimensions. Int. J. Numer. Anal. Meth. Geomech., doi: 10.1002/nag.2557. \\[10pt]
+    \item Sherman, C., Templeton, D., Morris, J. and Matzel, E. (2016), Modeling induced microseismicity in an enhanced geothermal reservoir, in ''50th US Rock Mechanics Symposium'', ARMA, Houston, TX.
+  \end{enumerate}
+\end{frame}
+
+
+
+%%%
+%%% THANKS 1
+%%%
+\begin{frame}
+\begin{center}
+\alert{\Huge{Any Questions?}}
+\vskip 0.5cm
+-
+\vskip 0.5cm
+\large{\url{davogler@ethz.ch} }
+\end{center}
+\end{frame}
+
+
+
+% TITLEFRAME
+\begin{frame}
+  \Wider[3ex]{
+  \maketitle
+  \begin{center}
+    \insertemail
+  \end{center}
+  }
+\end{frame}
+
+
+\end{document}

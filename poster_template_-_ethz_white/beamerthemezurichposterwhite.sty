@@ -1,0 +1,278 @@
+\ProvidesPackage{beamerthemezurichposter}
+
+\RequirePackage{tikz}
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,calc}
+\RequirePackage{amsmath,amssymb,bm,amsthm}
+\usefonttheme{default}
+
+\newcommand{\definevar}[2][-]{%
+  \expandafter\def\csname #2\endcsname{%
+    \expandafter\gdef\csname @#2\endcsname
+  }
+  \if#1-
+  \csname #2\endcsname{\@latex@error{No #2 defined}\@ehc}
+  \else
+  \csname #2\endcsname{#1}
+  \fi
+}
+
+\definevar{contactB}
+\definevar{abstractID}
+\def\contact#1{\def\@contact{#1}}
+\newcommand{\printcontact}{\@contact}
+\def\abstractID#1{\def\@abstractID{#1}}
+\newcommand{\printabstractID}{\@abstractID}
+
+
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{navigation symbols}{}  % no navigation on a poster
+
+% chameleon
+%\definecolor{tangocolordarkchameleon}{HTML}{4E9A06}
+%\definecolor{tangocolormediumchameleon}{HTML}{73D216}
+%\definecolor{tangocolorlightchameleon}{HTML}{8AE234}
+
+% tango sky blue
+\definecolor{tangocolordarkskyblue}{HTML}{204A87}
+\definecolor{tangocolormediumskyblue}{HTML}{3465A4}
+\definecolor{tangocolorlightskyblue}{HTML}{729FCF}
+
+
+% tango plum
+\definecolor{tangocolordarkplum}{HTML}{5C3566}
+\definecolor{tangocolormediumplum}{HTML}{75507B}
+\definecolor{tangocolorlightplum}{HTML}{AD7FA8}
+
+% scarlet red
+\definecolor{tangocolordarkscarletred}{HTML}{A40000}
+\definecolor{tangocolormediumscarletred}{HTML}{CC0000}
+\definecolor{tangocolorlightscarletred}{HTML}{EF2929}
+
+% aluminium
+\definecolor{tangocolordarkaluminium}{HTML}{BABDB6}
+%\definecolor{tangocolormediumaluminium}{HTML}{D3D7CF}
+\definecolor{tangocolormediumaluminium}{HTML}{D3D3D3}
+\definecolor{tangocolorlightaluminium}{HTML}{EEEEEC}
+
+% gray
+\definecolor{tangocolorlightgray}{HTML}{888A85}
+
+% body colors and fonts
+%\setbeamercolor*{normal text}{fg=black,bg=tangocolorlightskyblue}
+\setbeamercolor*{normal text}{fg=black,bg=white}%tangocolorlightaluminium}
+
+% headline colors and fonts
+\setbeamercolor{headline}{fg=tangocolordarkskyblue,bg=white}%tangocolordarkskyblue}
+\setbeamercolor{title in headline}{fg=tangocolordarkskyblue}
+
+% footline colors and fonts
+\setbeamercolor{footline}{fg=white,bg=tangocolordarkskyblue}
+\setbeamercolor{title in footline}{fg=white}
+\setbeamercolor{contact in footline}{fg=black}
+\setbeamercolor{email in footline}{fg=black}
+\setbeamercolor{institutefootline in footline}{fg=white}
+
+
+% TODO: modify the bullet color for the example and alert blocks!
+
+% block environment
+\setbeamercolor*{block body}{bg=white,fg=black}
+%\setbeamercolor*{block body}{bg=tangocolorlightskyblue,fg=black}
+\setbeamercolor*{block title}{bg=white,fg=tangocolordarkskyblue}
+\setbeamerfont{block title}{size=\large,series=\bf}
+
+% plot environment
+\setbeamercolor{block body plot}{bg=tangocolormediumaluminium,fg=black}
+\setbeamercolor{block title plot}{fg=white,bg=tangocolordarkskyblue}
+\setbeamerfont{block title plot}{size=\large,series=\bf}
+
+% example environment
+\setbeamercolor{block title example}{bg=white,fg=tangocolordarkskyblue}
+%\setbeamercolor{block body example}{bg=tangocolormediumaluminium,fg=black}
+%\setbeamercolor{block body example}{bg=white,fg=black}
+\setbeamercolor{block body example}{bg=tangocolorlightaluminium,fg=black} 
+
+% graph environment
+\setbeamercolor{block title graph}{fg=white,bg=tangocolordarkskyblue}
+%\setbeamercolor{block body example}{bg=tangocolormediumaluminium,fg=black}
+%\setbeamercolor{block body example}{bg=white,fg=black}
+\setbeamercolor{block body graph}{bg=white,fg=black} 
+
+% alerted environment
+%\setbeamercolor{block title alerted}{fg=white,bg=tangocolordarkplum}
+\setbeamercolor{block title alerted}{bg=white,fg=tangocolordarkscarletred}
+\setbeamercolor{block line alerted}{bg=tangocolordarkscarletred}
+\setbeamercolor{block body alerted}{bg=white,fg=black}
+
+% headline
+\setbeamertemplate{headline}{  
+  \leavevmode
+
+  \begin{beamercolorbox}[wd=\paperwidth]{headline}
+    \vskip1.0cm
+    \begin{center}
+      \usebeamercolor{title in headline}{\color{fg}\textbf{\LARGE{\inserttitle}}\\[4ex]}
+      \usebeamercolor{author in headline}{\color{fg}\large{\insertauthor}\\[2ex]}
+    \end{center}
+    \vskip-0.5cm
+    \begin{columns}[T]
+      \begin{column}{.01\paperwidth}
+      \end{column}
+      \begin{column}{.27\paperwidth}
+          \vskip2cm
+	  \raggedright
+          \includegraphics[height=0.1\linewidth]{ethz_logo.png}
+          \hspace{2cm}
+          \includegraphics[height=0.1\linewidth]{geg_logo.jpg}
+      \end{column}
+      \begin{column}{.4\paperwidth}
+	\vskip-2cm
+	\begin{center}
+	  \usebeamercolor{institute in headline}{\color{fg}\large{\insertinstitute}\\[1ex]}  
+	\end{center}
+      \end{column}
+      \begin{column}{.005\paperwidth}
+      \end{column}
+      \begin{column}{.27\paperwidth}
+        \vskip2cm
+	\raggedleft
+	\includegraphics[height=0.1\linewidth]{unine_logo.png}
+	\hspace{2cm}
+	\includegraphics[height=0.1\linewidth]{llnl_logo.png}
+      \end{column}
+      \begin{column}{.01\paperwidth}
+      \end{column}
+    \end{columns}
+        \vskip2ex
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=\paperwidth]{footline}
+    \rule{0pt}{4pt}
+  \end{beamercolorbox}
+}
+
+
+
+%\setbeamertemplate{block alerted begin}{
+%  \vskip.75ex
+%  \begin{beamercolorbox}[rounded=true,leftskip=1cm,colsep*=.75ex]{block title alerted}%
+%    \usebeamerfont*{block title alerted}\insertblocktitle
+%  \end{beamercolorbox}%
+%  \vspace{-25pt}
+%  \begin{beamercolorbox}[rounded=true]{block line alerted}%
+%    \rule{0pt}{4pt}
+%  \end{beamercolorbox}%
+%  {\ifbeamercolorempty[bg]{block alerted body}{}{\nointerlineskip\vskip-0.5pt}}%
+%  \usebeamerfont{block body alerted}%
+%  \begin{beamercolorbox}[rounded=true,colsep*=.75ex,sep=.75ex,vmode]{block body alerted}%
+%    \ifbeamercolorempty[bg]{block body alerted}{\vskip-.25ex}{\vskip-.75ex}\vbox{}%
+%  }
+%\setbeamertemplate{block alerted end}{
+%  \end{beamercolorbox}
+%}
+
+
+% define some length variables that are used by the template
+\newlength{\inboxwd}
+\newlength{\iinboxwd}
+\newlength{\inboxrule}
+\newlength{\linewd}
+
+\makeatletter
+\makeatother
+% Alert block definition (with frame)
+\setbeamertemplate{block alerted begin}
+{
+  \par\vskip\medskipamount
+  \begin{beamercolorbox}[sep=0ex,rounded=true,center,dp={2ex}]{block title alerted}
+    \vskip-0.7cm
+    \usebeamerfont{block title}\large\insertblocktitle\strut
+    \begin{center}
+      \vskip -6pt
+      \setlength{\linewd}{\textwidth}
+      %\addtolength{\linewd}{0.2cm}
+      \hrule height 4pt width \linewd
+    \end{center}
+  \end{beamercolorbox}
+  {\parskip0pt\par}
+  \usebeamerfont{block body}
+  \vskip-1.2cm
+  %\begin{beamercolorbox}[sep=0.1cm, rounded=true,center]{block title alerted}
+  \setlength{\inboxwd}{\linewidth}
+  %\addtolength{\inboxwd}{-0.2cm}
+  \begin{beamercolorbox}[rounded=true,wd={\inboxwd},center]{block body alerted}
+  \setlength{\iinboxwd}{\inboxwd}
+  \setlength{\inboxrule}{\inboxwd}
+  \addtolength{\iinboxwd}{-0.5cm}
+  \addtolength{\inboxrule}{0.5cm}
+  \begin{center}
+  \begin{minipage}{\iinboxwd}
+  \justifying
+}
+\setbeamertemplate{block alerted end}
+{
+  \end{minipage}
+  \end{center}
+  \end{beamercolorbox}
+  %\end{beamercolorbox}
+  \vskip\smallskipamount
+}
+
+
+
+% Alert block definition (with frame)
+\setbeamertemplate{block begin}
+{
+  \par\vskip\medskipamount
+  \begin{beamercolorbox}[sep=0ex,rounded=true,center,dp={2ex}]{block title}
+    \vskip-0.7cm
+    \usebeamerfont{block title}\large\insertblocktitle\strut
+    \begin{center}
+      \vskip -6pt
+      \setlength{\linewd}{\textwidth}
+      \hrule height 4pt width \linewd
+    \end{center}
+  \end{beamercolorbox}
+  {\parskip0pt\par}
+  \usebeamerfont{block body}
+  \vskip-1.2cm
+  \setlength{\inboxwd}{\linewidth}
+  \begin{beamercolorbox}[rounded=true,wd={\inboxwd},center]{block body}
+  \setlength{\iinboxwd}{\inboxwd}
+  \setlength{\inboxrule}{\inboxwd}
+  \addtolength{\iinboxwd}{-0.5cm}
+  \addtolength{\inboxrule}{0.5cm}
+  \begin{center}
+  \begin{minipage}{\iinboxwd}
+  \justifying
+}
+\setbeamertemplate{block end}
+{
+  \end{minipage}
+  \end{center}
+  \end{beamercolorbox}
+  \vskip\smallskipamount
+}
+
+
+
+\setbeamertemplate{footline}{  
+  \leavevmode
+  \begin{beamercolorbox}[wd=\paperwidth]{footline}
+    \rule{0pt}{4pt}
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=\paperwidth]{headline}
+    \begin{columns}[T]
+      \begin{column}{.98\paperwidth}
+        \vskip2ex
+        \usebeamercolor{contact in footline}{ 
+        \small{Contact: \printcontact 
+        \hfill 
+        %\hspace{12cm}
+        %\includegraphics[height=0.04\linewidth]{sccer_logo}
+        \hfill
+        \printabstractID}}
+      \end{column}
+    \end{columns}
+        \vskip1ex
+  \end{beamercolorbox}
+}
